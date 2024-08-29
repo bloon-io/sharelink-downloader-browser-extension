@@ -1,11 +1,11 @@
-const shareId = window.location.pathname.split('/').pop();
-console.log("shareId:", shareId);
+async function main() {
+    const shareId = window.location.pathname.split('/').pop();
+    console.log("shareId:", shareId);
 
-const manager = new BSDCE_RemoteTreeDataManager(shareId);
-manager.retrieveCurrentRemoteTreeData().then(() => {
-    console.log(manager._treeData_remote_current);
+    const manager = new BSDBE_RemoteTreeDataManager(shareId);
+    const treeData = await manager.retrieveCurrentRemoteTreeData()
+    console.log(treeData);
+};
 
-}).catch(error => {
-    console.error(error);
-
-});
+// --------------------------------------------------
+main();
