@@ -95,7 +95,7 @@ window.BSDBE_RemoteTreeDataManager =
         _handle_childFiles(localRelPath, childCards, treeData) {
             for (const childCard of childCards) {
                 if (RemoteTreeDataManager.IGNORE_CARD_TYPE.includes(childCard.typeInt)) {
-                    console.log("Ignore Non-File Card with type: " + childCard.typeInt);
+                    console.log("Ignore Non-File Card with type: " + childCard.typeInt + "; name: " + childCard.name);
                     continue;
                 }
                 const chC_id = childCard.cardID;
