@@ -19,24 +19,19 @@ download_all_click_action = async function () {
     // --------------------------------------------------
     // for all files in file_dict, file_dict is key of treeData
     for (const file_rel_path_with_root in treeData.file_dict) {
-        const file_rel_path_without_root = file_rel_path_with_root.split('/').slice(1).join('/');
-        const download_url = "https://direct.bloon.io/share/" + shareId + "/" + file_rel_path_without_root;
-        chrome.downloads.download({
-            url: download_url,
-            filename: file_rel_path_with_root
-        }, function (downloadId) {
-            console.log("Download started with ID: ", downloadId);
-        });
+        // const file_rel_path_without_root = file_rel_path_with_root.split('/').slice(1).join('/');
+        // const download_url = "https://direct.bloon.io/share/" + shareId + "/" + file_rel_path_without_root;
+        const card_id = treeData.file_dict[file_rel_path_with_root][2];
+        const download_url = "https://direct.bloon.io/access/" + shareId + "?c=" + card_id + "&dl";
+        const action_msg = {
+            action: 'download',
+            params: {
+                download_url: download_url,
+                file_rel_path_with_root: file_rel_path_with_root
+            }
+        }
+        chrome.runtime.sendMessage(action_msg);
     }
-
-    // // https://direct.bloon.io/share/MavxQ0gm/a/100k.txt
-    // chrome.downloads.download({
-    //     url: imageUrl,
-    //     filename: "folder1/folder2/image.jpg",  // 多層資料夾的路徑
-    //     conflictAction: 'uniquify'  // 若檔案已存在，會在檔名後面加上數字
-    // }, function (downloadId) {
-    //     console.log("Download started with ID: ", downloadId);
-    // });
 
     // --------------------------------------------------
     button.textContent = 'Download All';
