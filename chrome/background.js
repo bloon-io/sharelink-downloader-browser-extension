@@ -1,3 +1,5 @@
+importScripts('api.js');
+
 chrome.runtime.onMessage.addListener((action_msg, sender, sendResponse) => {
     if (action_msg.action === 'background_init') {
         background_init(action_msg.params, sender.tab);
@@ -10,15 +12,31 @@ chrome.runtime.onMessage.addListener((action_msg, sender, sendResponse) => {
     // }
 });
 
-background_init = function (params, tab) {
+background_init = async function (params, tab) {
+
+    // TODO now-here 1 這邊繼續，建立一格快速辨析當前 sharelink 是否是 folder 的方法
+    // TODO now-here 2 refactor 改為 class
+
+    const shareId = params.window_location.pathname.split('/').pop();
+    console.log("shareId:", shareId);
+
+    const manager = new SharelinkDataManager(shareId);
+    const treeData = await manager.retrieveCurrentRemoteTreeData()
+    console.log(treeData);
+
+
+    // --------------------------------------------------
+    //
+    // --------------------------------------------------
     chrome.action.setPopup({
         popup: "popup-enabled.html",
         tabId: tab.id
     });
 
+    // --------------------------------------------------
     // Detect if the current page matches https://www.bloon.io/share*
-    const url = params.window_location;
-    if (url.hostname === 'www.bloon.io' && url.pathname.startsWith('/share')) {
+    // --------------------------------------------------
+    if (params.window_location.hostname === 'www.bloon.io' && params.window_location.pathname.startsWith('/share')) {
         chrome.action.setIcon({
             path: {
                 "16": "images/sharelink-enable-for-extenstion-icon_16x16_51B749_bgTR.png",
