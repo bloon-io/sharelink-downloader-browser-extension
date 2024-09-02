@@ -1,8 +1,56 @@
 chrome.runtime.onMessage.addListener((action_msg, sender, sendResponse) => {
-    if (action_msg.action === 'download') {
-        do_download_action(action_msg.params);
+    if (action_msg.action === 'background_init') {
+        background_init(action_msg.params, sender.tab);
     }
+
+    // if (action_msg.action === 'download') {
+    //     do_download_action(action_msg.params);
+    // } else if (action_msg.action === 'background_init') {
+    //     background_init(action_msg.params);
+    // }
 });
+
+background_init = function (params, tab) {
+    chrome.action.setPopup({
+        popup: "popup-enabled.html",
+        tabId: tab.id
+    });
+
+    // Detect if the current page matches https://www.bloon.io/share*
+    const url = params.window_location;
+    if (url.hostname === 'www.bloon.io' && url.pathname.startsWith('/share')) {
+        chrome.action.setIcon({
+            path: {
+                "16": "images/sharelink-enable-for-extenstion-icon_16x16_51B749_bgTR.png",
+                "48": "images/sharelink-enable-for-extenstion-icon_48x48_51B749_bgTR.png",
+                "128": "images/sharelink-enable-for-extenstion-icon_128x128_51B749_bgTR.png"
+            },
+            tabId: tab.id
+        });
+
+        chrome.action.openPopup();
+
+    } else {
+        chrome.action.setIcon({
+            path: {
+                "16": "images/sharelink-gray-for-extenstion-icon_16x16_878787_bgTR.png",
+                "48": "images/sharelink-gray-for-extenstion-icon_48x48_878787_bgTR.png",
+                "128": "images/sharelink-gray-for-extenstion-icon_128x128_878787_bgTR.png"
+            },
+            tabId: tab.id
+        });
+
+    }
+}
+
+//////////////////////////////////////////////////
+
+// const popup_url = chrome.runtime.getURL('popup.html');
+// chrome.windows.create({
+//     type: 'popup',
+//     width: 300,
+//     height: 200
+// });
 
 do_download_action = function (params) {
     const DOWNLOAD_HOME_NAME = 'BLOON_sharelink_downloader';
