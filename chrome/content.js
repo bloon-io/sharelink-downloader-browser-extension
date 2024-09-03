@@ -1,10 +1,10 @@
 async function main() {
-    background_init();
+    tab_init_in_background();
 };
 
-background_init = function () {
+tab_init_in_background = function () {
     const action_msg = {
-        action: 'background_init',
+        action: 'tab_init_in_background',
         params: {
             window_location: window.location
         }

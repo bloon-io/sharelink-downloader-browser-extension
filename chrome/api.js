@@ -7,6 +7,29 @@ class SharelinkDataManager {
         this.SHARE_ID = shareId;
     }
 
+    async isFolder() {
+        const socket = new WebSocket(SharelinkDataManager.BLOON_ADJ_API_WSS_URL);
+        try {
+            await new Promise((resolve, reject) => {
+                socket.onopen = resolve;
+                socket.onerror = reject;
+            });
+
+            const api = new WssApiCaller(socket);
+            let outData = await api.getShareInfo({ shareID: this.SHARE_ID });
+
+            const shareData = outData.shareData;
+            // const itemID = shareData.itemID;
+            const isFolder = shareData.isFolder;
+            // const bloonID = shareData.bloonID;
+
+            return isFolder;
+
+        } finally {
+            socket.close();
+        }
+    }
+
     async retrieveCurrentRemoteTreeData() {
 
         // Tree data to return

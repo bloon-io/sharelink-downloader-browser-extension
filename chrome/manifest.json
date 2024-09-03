@@ -10,7 +10,7 @@
         "windows"
     ],
     "action": {
-        "default_popup": "popup-disabled.html",
+        "default_popup": "pages/popup-disabled/popup-disabled.html",
         "default_icon": {
             "16": "images/sharelink-gray-for-extenstion-icon_16x16_878787_bgTR.png",
             "48": "images/sharelink-gray-for-extenstion-icon_48x48_878787_bgTR.png",
