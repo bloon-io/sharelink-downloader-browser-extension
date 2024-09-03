@@ -1,0 +1,15 @@
+.head-info {
+  font-size: 16px;
+}
+
+.file-list-zone {
+  font-size: 16px;
+}
+.file-list-zone table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.file-list-zone table th,
+.file-list-zone table td {
+  border: 1px solid black;
+}/*# sourceMappingURL=download.css.map */

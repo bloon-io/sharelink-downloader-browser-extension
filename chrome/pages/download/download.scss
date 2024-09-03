@@ -1,0 +1,17 @@
+.head-info {
+    font-size: 16px;
+}
+
+.file-list-zone {
+    font-size: 16px;
+
+    table {
+        border: 1px solid black;
+        border-collapse: collapse;
+
+        th,
+        td {
+            border: 1px solid black;
+        }
+    }
+}

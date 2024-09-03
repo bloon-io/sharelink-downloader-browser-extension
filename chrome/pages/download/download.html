@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- TODO i18n -->
+    <title>下載</title>
+    <meta charset="UTF-8">
+    <!-- TODO 換 icon，與 extenstion icon 相同 -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="download.css">
+</head>
+
+<body>
+    <!-- TODO i18n -->
+    <div class="head-info" id="head-info"></div>
+    <br />
+    <div class="file-list-zone" id="file-list-zone" style="display: none;">
+        <table>
+            <thead>
+                <tr>
+                    <th>狀態</th>
+                    <th>檔案</th>
+                </tr>
+            </thead>
+            <tbody id="file-list-tbody"></tbody>
+        </table>
+    </div>
+
+    <script src="../../api.js"></script>
+    <script src="download.js"></script>
+</body>
+
+</html>
