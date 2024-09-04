@@ -7,8 +7,19 @@ chrome.runtime.onMessage.addListener((action_msg, sender, sendResponse) => {
     } else if (action_msg.action === 'download_a_file') {
         do_download_a_file(action_msg.params, sender.tab);
 
+    } else if (action_msg.action === 'cancle_downloads') {
+        do_cancle_downloads(action_msg.params, sender.tab);
+
     }
 });
+
+do_cancle_downloads = function (params, tab) {
+    const download_ids = params.download_ids;
+    download_ids.forEach(download_id => {
+        console.log("cancle download_id:", download_id);
+        chrome.downloads.cancel(download_id);
+    });
+}
 
 do_tab_init_in_background = async function (params, tab) {
     const shareId = params.window_location.pathname.split('/').pop();
@@ -88,6 +99,7 @@ do_download_a_file = function (params, tab) {
                             action: 'update_tr',
                             params: {
                                 tr_id: tr_id,
+                                download_id: download_id,
                                 status: 'in_progress',
                                 persentage_str: persentage_str
                             }
@@ -101,6 +113,7 @@ do_download_a_file = function (params, tab) {
                             action: 'update_tr',
                             params: {
                                 tr_id: tr_id,
+                                download_id: download_id,
                                 status: 'complete'
                             }
                         }
@@ -113,6 +126,7 @@ do_download_a_file = function (params, tab) {
                             action: 'update_tr',
                             params: {
                                 tr_id: tr_id,
+                                download_id: download_id,
                                 status: 'interrupted',
                                 cause: download_info.error
                             }

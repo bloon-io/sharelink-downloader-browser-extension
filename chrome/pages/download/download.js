@@ -35,11 +35,32 @@ chrome.runtime.onMessage.addListener((action_msg, sender, sendResponse) => {
     }
 });
 
+// Intercept the close window event
+window.addEventListener('beforeunload', function (event) {
+    // event.preventDefault();
+    // ------------------------------
+    // Scan all tr with download_id attribute
+    const download_ids = [];
+    const trs = document.querySelectorAll('#file-list-tbody tr[download_id]');
+    trs.forEach(tr => {
+        download_ids.push(parseInt(tr.getAttribute('download_id')));
+    });
+    // ------------------------------
+    const action_msg = {
+        action: 'cancle_downloads',
+        params: {
+            download_ids: download_ids
+        }
+    }
+    chrome.runtime.sendMessage(action_msg);
+});
+
 do_update_tr = function (params) {
     const tr = document.querySelector('#' + params.tr_id);
     const status_td = tr.querySelector('td[name="status"]');
 
     tr.setAttribute('status', params.status);
+    tr.setAttribute('download_id', params.download_id); // for canceling download
 
     if (params.status === 'in_progress') {
         status_td.textContent = params.persentage_str;

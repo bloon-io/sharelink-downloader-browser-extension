@@ -4,8 +4,8 @@ document.getElementById('download-btn').addEventListener('click', function () {
 
     const shareId = new URLSearchParams(window.location.search).get('shareId');
     chrome.windows.getCurrent(function (currentWindow) {
-        console.log(currentWindow.top);
-        console.log(currentWindow.left);
+        // console.log(currentWindow.top);
+        // console.log(currentWindow.left);
         chrome.windows.create({
             url: 'pages/download/download.html?shareId=' + shareId,
             type: 'popup',
