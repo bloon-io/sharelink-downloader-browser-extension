@@ -4,16 +4,19 @@ main = async function () {
 
     document.title = "下載來自 " + sharelink_url + " 的檔案"; // TODO i18n
 
-    const headInfo = document.querySelector('#head-info');
-    headInfo.textContent = "解析中，請稍候..."; // TODO i18n
+    const headTextInfo = document.querySelector('#head-text-info');
+    headTextInfo.textContent = "解析中，請稍候..."; // TODO i18n
 
     const sharelinkDataManager = new SharelinkDataManager(shareId);
     const treeData = await sharelinkDataManager.retrieveCurrentRemoteTreeData()
     console.log(treeData);
 
-    const file_num = Object.keys(treeData.file_dict).length;
+    headTextInfo.textContent = "開始下載。下載過程中請保持此視窗開啟，關閉此視窗將中斷所有下載。"; // TODO i18n
+    headTextInfo.style.color = 'red';
 
-    headInfo.textContent = "共 " + file_num + " 個檔案"; // TODO i18n
+    const totalNumDiv = document.querySelector('#total-num');
+    const file_num = Object.keys(treeData.file_dict).length;
+    totalNumDiv.textContent = file_num;
 
     // to show #file-list-zone
     const fileListZone = document.querySelector('#file-list-zone');
@@ -52,8 +55,20 @@ window.addEventListener('beforeunload', function (event) {
             download_ids: download_ids
         }
     }
-    chrome.runtime.sendMessage(action_msg);
+    chrome.runtime.sendMessage(action_msg); // TODO Sometimes it fails in practice
 });
+
+increase_download_failed_num = function () {
+    const downloadFailedNumDiv = document.querySelector('#download-failed-num');
+    const download_failed_num = parseInt(downloadFailedNumDiv.textContent);
+    downloadFailedNumDiv.textContent = download_failed_num + 1;
+}
+
+increase_downloaded_num = function () {
+    const downloadedNumDiv = document.querySelector('#downloaded-num');
+    const downloaded_num = parseInt(downloadedNumDiv.textContent);
+    downloadedNumDiv.textContent = downloaded_num + 1;
+}
 
 do_update_tr = function (params) {
     const tr = document.querySelector('#' + params.tr_id);
@@ -70,12 +85,14 @@ do_update_tr = function (params) {
         status_td.textContent = "下載完成"; // TODO i18n
         status_td.style.backgroundColor = 'rgba(0, 255, 0, 0.3)'; // light green
         // ------------------------------
+        increase_downloaded_num();
         download_next_file();
 
     } else if (params.status === 'interrupted') {
         status_td.textContent = "下載中斷（" + params.cause + "）"; // TODO i18n
         status_td.style.backgroundColor = 'rgba(255, 0, 0, 0.3)'; // light red
         // ------------------------------
+        increase_download_failed_num();
         download_next_file();
     }
 

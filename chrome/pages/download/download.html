@@ -12,16 +12,23 @@
 
 <body>
     <!-- TODO i18n -->
-    <div class="head-info" id="head-info"></div>
+    <div class="head-info-zone">
+        <div class="text-info" id="head-text-info"></div>
+        <br />
+        <!-- TODO i18n -->
+        總檔案數：<div class="total-num" id="total-num">0</div><br />
+        已下載完成：<div class="downloaded-num" id="downloaded-num">0</div><br />
+        下載失敗：<div class="download-failed-num" id="download-failed-num">0</div><br />
+    </div>
     <br />
     <div class="file-list-zone" id="file-list-zone" style="display: none;">
         <table>
-            <thead>
+            <!-- <thead>
                 <tr>
                     <th>狀態</th>
                     <th>檔案</th>
                 </tr>
-            </thead>
+            </thead> -->
             <tbody id="file-list-tbody"></tbody>
         </table>
     </div>

@@ -1,5 +1,14 @@
-.head-info {
+.head-info-zone {
   font-size: 16px;
+}
+.head-info-zone .text-info {
+  font-size: 20px;
+  font-weight: bold;
+}
+.head-info-zone .total-num,
+.head-info-zone .downloaded-num,
+.head-info-zone .download-failed-num {
+  display: inline-block;
 }
 
 .file-list-zone {
