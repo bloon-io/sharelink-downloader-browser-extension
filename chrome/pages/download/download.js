@@ -19,9 +19,44 @@ main = async function () {
     const fileListZone = document.querySelector('#file-list-zone');
     fileListZone.style.display = 'block';
 
+    // --------------------------------------------------
     init_show_table(treeData, shareId);
 
+    // --------------------------------------------------
     download_next_file();
+    download_next_file();
+    download_next_file();
+}
+
+chrome.runtime.onMessage.addListener((action_msg, sender, sendResponse) => {
+    if (action_msg.action === "update_tr") {
+        do_update_tr(action_msg.params);
+
+    }
+});
+
+do_update_tr = function (params) {
+    const tr = document.querySelector('#' + params.tr_id);
+    const status_td = tr.querySelector('td[name="status"]');
+
+    tr.setAttribute('status', params.status);
+
+    if (params.status === 'in_progress') {
+        status_td.textContent = params.persentage_str;
+        status_td.style.backgroundColor = 'rgba(0, 0, 255, 0.3)'; // light blue
+
+    } else if (params.status === 'complete') {
+        status_td.textContent = "下載完成"; // TODO i18n
+        status_td.style.backgroundColor = 'rgba(0, 255, 0, 0.3)'; // light green
+        // ------------------------------
+        download_next_file();
+
+    } else if (params.status === 'interrupted') {
+        status_td.textContent = "下載中斷（" + params.cause + "）"; // TODO i18n
+        status_td.style.backgroundColor = 'rgba(255, 0, 0, 0.3)'; // light red
+        // ------------------------------
+        download_next_file();
+    }
 
 }
 
@@ -39,7 +74,14 @@ download_next_file = function () {
             }
         }
         chrome.runtime.sendMessage(action_msg);
-        tr.setAttribute('status', 'downloading');
+        tr.setAttribute('status', 'just_started');
+
+        const status_td = tr.querySelector('td[name="status"]');
+        status_td.textContent = "0%";
+        status_td.style.backgroundColor = 'rgba(0, 0, 255, 0.3)'; // light blue
+
+        // Move the current tr to the top
+        tr.parentNode.insertBefore(tr, tr.parentNode.firstChild);
 
     } else {
         console.log("All files downloaded.");
@@ -64,14 +106,19 @@ init_show_table = function (treeData, shareId) {
         let td = null;
 
         td = document.createElement('td');
+        td.setAttribute('name', 'status');
         td.textContent = "排隊中..."; // TODO i18n
         tr.appendChild(td);
 
         td = document.createElement('td');
+        td.setAttribute('name', 'file_rel_path_with_root');
         td.textContent = file_rel_path_with_root;
         tr.appendChild(td);
 
         fielListTbody.appendChild(tr);
+
+        // ------------------------------
+        count++;
     }
 }
 

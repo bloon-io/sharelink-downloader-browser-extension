@@ -2,15 +2,15 @@ importScripts('api.js');
 
 chrome.runtime.onMessage.addListener((action_msg, sender, sendResponse) => {
     if (action_msg.action === 'tab_init_in_background') {
-        tab_init_in_background(action_msg.params, sender.tab);
+        do_tab_init_in_background(action_msg.params, sender.tab);
 
     } else if (action_msg.action === 'download_a_file') {
-        download_a_file(action_msg.params);
+        do_download_a_file(action_msg.params, sender.tab);
 
     }
 });
 
-tab_init_in_background = async function (params, tab) {
+do_tab_init_in_background = async function (params, tab) {
     const shareId = params.window_location.pathname.split('/').pop();
     console.log("shareId:", shareId);
 
@@ -61,7 +61,7 @@ _determine_correct_icon_and_popup = async function (params, tab, isFolder, share
     }
 }
 
-download_a_file = function (params) {
+do_download_a_file = function (params, tab) {
     const DOWNLOAD_HOME_NAME = 'BLOON_sharelink_downloader';
     // --------------------------------------------------
     const download_url = params.download_url;
@@ -73,58 +73,55 @@ download_a_file = function (params) {
         url: download_url,
         filename: download_path
     }, function (download_id) {
-        // console.log("download_id:", download_id);
-        chrome.downloads.onChanged.addListener(function tmp_onChanged_func(delta) {
-            if (delta.id === download_id) {
-                if (delta.state) {
-                    console.log("delta.state.current:", delta.state.current);
-                    if (delta.state.current === 'complete') {
-                        console.log("Download completed:", download_id);
-
-                    } else if (delta.state.current === 'interrupted') {
-                        // Wait a moment to ensure that the download information has been recorded
-                        setTimeout(() => {
-                            chrome.downloads.search({ id: download_id }, (results) => {
-                                if (results && results.length > 0) {
-                                    const download_item = results[0];
-                                    // console.log("Download interrupted, download_item:", download_item);
-                                    console.warn("Download interrupted, url:", download_item.url);
-                                    // console.log("Filename:", download_item.filename);
-                                    // console.log("Total bytes:", download_item.totalBytes);
-                                    // console.log("Received bytes:", download_item.bytesReceived);
-                                    // console.log("====================================");
-                                } else {
-                                    console.log("Download not found");
-                                }
-                            });
-                        }, 1000);
-
-                    }
-                    // --------------------------------------------------
-                    chrome.downloads.onChanged.removeListener(tmp_onChanged_func);
-                }
-            }
-        });
-
-        // TODO now-here 1
-
         // Set an interval to periodically check the download progress
         const intervalId = setInterval(() => {
-            chrome.downloads.search({ id: downloadId }, function (results) {
+            chrome.downloads.search({
+                id: download_id
+            }, function (results) {
                 if (results && results[0]) {
-                    const downloadItem = results[0];
-                    if (downloadItem.state === 'in_progress' && downloadItem.totalBytes > 0) {
-                        const progress = (downloadItem.bytesReceived / downloadItem.totalBytes) * 100;
-                        console.log('下載進度: ' + progress.toFixed(2) + '%');
-                    } else if (downloadItem.state === 'complete') {
-                        console.log('下載完成！');
-                        clearInterval(intervalId); // 下載完成，停止檢查
-                    } else if (downloadItem.state === 'interrupted') {
-                        console.log('下載中斷: ' + downloadItem.error);
-                        clearInterval(intervalId); // 下載中斷，停止檢查
+                    const download_info = results[0];
+                    if (download_info.state === 'in_progress' && download_info.totalBytes > 0) {
+                        const progress = (download_info.bytesReceived / download_info.totalBytes) * 100;
+                        const persentage_str = progress.toFixed(2) + '%';
+                        // ------------------------------
+                        const action_msg = {
+                            action: 'update_tr',
+                            params: {
+                                tr_id: tr_id,
+                                status: 'in_progress',
+                                persentage_str: persentage_str
+                            }
+                        }
+                        chrome.tabs.sendMessage(tab.id, action_msg);
+
+                    } else if (download_info.state === 'complete') {
+                        clearInterval(intervalId); // to stop checking
+                        // ------------------------------
+                        const action_msg = {
+                            action: 'update_tr',
+                            params: {
+                                tr_id: tr_id,
+                                status: 'complete'
+                            }
+                        }
+                        chrome.tabs.sendMessage(tab.id, action_msg);
+
+                    } else if (download_info.state === 'interrupted') {
+                        clearInterval(intervalId); // to stop checking
+                        // ------------------------------
+                        const action_msg = {
+                            action: 'update_tr',
+                            params: {
+                                tr_id: tr_id,
+                                status: 'interrupted',
+                                cause: download_info.error
+                            }
+                        }
+                        chrome.tabs.sendMessage(tab.id, action_msg);
+
                     }
                 }
             });
-        }, 1000); // 每秒檢查一次
+        }, 1000); // Check every second
     });
 }
