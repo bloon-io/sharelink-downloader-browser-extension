@@ -112,7 +112,11 @@ do_download_a_file = function (params, tab) {
                                 persentage_str: persentage_str
                             }
                         }
-                        chrome.tabs.sendMessage(tab.id, action_msg);
+                        chrome.tabs.sendMessage(tab.id, action_msg).then((response) => {
+                            // do nothing
+                        }).catch((error) => {
+                            console.warn('Error sending message, but that is ok:', error);
+                        });
 
                     } else if (download_info.state === 'complete') {
                         clearInterval(intervalId); // to stop checking
@@ -125,7 +129,11 @@ do_download_a_file = function (params, tab) {
                                 status: 'complete'
                             }
                         }
-                        chrome.tabs.sendMessage(tab.id, action_msg);
+                        chrome.tabs.sendMessage(tab.id, action_msg).then((response) => {
+                            // do nothing
+                        }).catch((error) => {
+                            console.warn('Error sending message, but that is ok:', error);
+                        });
 
                     } else if (download_info.state === 'interrupted') {
                         clearInterval(intervalId); // to stop checking
@@ -139,7 +147,11 @@ do_download_a_file = function (params, tab) {
                                 cause: download_info.error
                             }
                         }
-                        chrome.tabs.sendMessage(tab.id, action_msg);
+                        chrome.tabs.sendMessage(tab.id, action_msg).then((response) => {
+                            // do nothing
+                        }).catch((error) => {
+                            console.warn('Error sending message, but that is ok:', error);
+                        });
 
                     }
                 }
