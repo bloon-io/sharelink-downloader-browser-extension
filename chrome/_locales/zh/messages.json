@@ -9,7 +9,7 @@
         "message": "全部下載"
     },
     "pop__body_desc": {
-        "message": "這是 BLOON 分享連結下載器。這個頁面是資料夾的<a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>分享連結</a>頁面。<br /><br />點擊「<b>全部下載</b>」按鈕以下載資料夾內的所有檔案，並且會在下載後保持資料夾結構。"
+        "message": "這是 BLOON 分享連結下載器。這個頁面是資料夾的<a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>分享連結</a>頁面。<br /><br />點擊「全部下載」按鈕以下載資料夾內的所有檔案，並且會在下載後保持資料夾結構。"
     },
     "pop__body_desc_disabled": {
         "message": "這是 BLOON 分享連結下載器。這個頁面不是資料夾的<a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>分享連結</a>頁面，所以不會有作用。"

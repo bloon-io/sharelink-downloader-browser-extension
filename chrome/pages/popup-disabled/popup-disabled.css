@@ -4,18 +4,18 @@ a {
 
 html body {
   width: 320px;
-  height: 430px;
+  height: 500px;
   box-sizing: border-box;
   margin: 0;
+  background-color: #F4F4F4;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 html body .header-zone {
-  flex: 0 0 80px;
+  flex: 0 0 60px;
   width: 100%;
-  background-color: #F4F4F4;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,14 +23,12 @@ html body .header-zone {
 }
 html body .header-zone img {
   flex: 0 0 auto;
-  height: 48px;
-  margin: 10px 6px;
+  height: 40px;
+  margin: 16px 10px;
 }
 html body .body-zone {
   flex: 1 0 auto;
   width: 100%;
-  background-color: #F4F4F4;
-  padding-bottom: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,10 +41,52 @@ html body .body-zone .inner-body {
   flex-direction: column;
   align-items: center;
 }
+html body .body-zone .inner-body .button-zone {
+  flex: 0 0 124px;
+  width: 100%;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+html body .body-zone .inner-body .button-zone .download-btn {
+  flex: 0 0 64px;
+  width: 170px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #383838;
+  border: 0px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+}
 html body .body-zone .inner-body .desc-zone {
   flex: 1 0 auto;
   width: calc(100% - 32px);
-  margin-top: 16px;
   background-color: #FFFFFF;
   font-size: 16px;
+  color: #383838;
+}
+html body .footer-zone {
+  flex: 0 0 56px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+html body .footer-zone .auto-popup-option {
+  flex: 0 0 auto;
+  margin: 16px;
+  color: #383838;
+  font-size: 14px;
+}
+
+html body {
+  height: 420px;
+}
+html body .body-zone {
+  padding-bottom: 16px;
+}
+html body .body-zone .inner-body .desc-zone {
+  margin-top: 16px;
 }/*# sourceMappingURL=popup-disabled.css.map */

@@ -9,7 +9,7 @@
         "message": "DOWNLOAD ALL"
     },
     "pop__body_desc": {
-        "message": "This is the BLOON Sharelink Downloader. This page is a <a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>sharelink</a> page for a folder.<br /><br />Click the \"<b>DOWNLOAD ALL</b>\" button to download all the files within the folder, and the folder structure will be preserved after downloading."
+        "message": "This is the BLOON Sharelink Downloader. This page is a <a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>sharelink</a> page for a folder.<br /><br />Click the \"DOWNLOAD ALL\" button to download all the files within the folder, and the folder structure will be preserved after downloading."
     },
     "pop__body_desc_disabled": {
         "message": "This is the BLOON Sharelink Downloader. This page is not the <a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>sharelink</a> page for a folder, so it will not be effective."

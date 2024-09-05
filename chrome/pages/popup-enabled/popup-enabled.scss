@@ -17,7 +17,7 @@ html {
         align-items: center;
 
         .header-zone {
-            flex: 0 0 80px;
+            flex: 0 0 60px;
             width: 100%;
 
             display: flex;
@@ -27,8 +27,8 @@ html {
 
             img {
                 flex: 0 0 auto;
-                height: 48px;
-                margin: 10px 6px;
+                height: 40px;
+                margin: 16px 10px;
             }
 
             // h1 {
@@ -40,7 +40,6 @@ html {
         .body-zone {
             flex: 1 0 auto;
             width: 100%;
-            // padding-bottom: $body-zone-side-gape;
 
             display: flex;
             flex-direction: column;
@@ -56,7 +55,7 @@ html {
                 align-items: center;
 
                 .button-zone {
-                    flex: 0 0 130px;
+                    flex: 0 0 124px;
                     width: 100%;
                     background-color: #FFFFFF;
 
@@ -66,7 +65,7 @@ html {
                     justify-content: center;
 
                     .download-btn {
-                        flex: 0 0 70px;
+                        flex: 0 0 64px;
                         width: 170px;
                         font-size: 18px;
 
@@ -79,11 +78,9 @@ html {
                     }
                 }
 
-                $desc-zone-side-gape: 16px;
-
                 .desc-zone {
                     flex: 1 0 auto;
-                    width: calc(100% - #{$desc-zone-side-gape *2});
+                    width: calc(100% - #{16px *2});
                     background-color: #FFFFFF;
                     font-size: 16px;
                     color: #383838;
@@ -101,7 +98,7 @@ html {
 
             .auto-popup-option {
                 flex: 0 0 auto;
-                margin-left: 16px;
+                margin: 16px;
                 color: #383838;
                 font-size: 14px;
             }
