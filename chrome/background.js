@@ -53,9 +53,17 @@ _determine_correct_icon_and_popup = async function (params, tab, isFolder, share
                 tabId: tab.id
             });
 
-            // force to show popup
-            chrome.action.openPopup();
-
+            // Determine whether to open the popup automatically by isAutoPopup
+            chrome.storage.local.get(['isAutoPopup'], function (result) {
+                // default is to open popup automatically
+                if (result.isAutoPopup === undefined) {
+                    chrome.storage.local.set({ isAutoPopup: true }, () => {
+                        chrome.action.openPopup();
+                    });
+                } else if (result.isAutoPopup) {
+                    chrome.action.openPopup();
+                }
+            });
         }
 
     } else {

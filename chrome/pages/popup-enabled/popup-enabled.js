@@ -1,3 +1,25 @@
+main = function () {
+    const autoPopupCheckbox = document.getElementById('auto-popup-checkbox');
+    chrome.storage.local.get(['isAutoPopup'], function (result) {
+        if (result.isAutoPopup === undefined) {
+            // default is to open popup automatically
+            chrome.storage.local.set({ isAutoPopup: true }, () => {
+                autoPopupCheckbox.checked = true;
+            });
+        } else {
+            autoPopupCheckbox.checked = result.isAutoPopup;
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    main();
+});
+
+document.getElementById('auto-popup-checkbox').addEventListener('change', function () {
+    chrome.storage.local.set({ isAutoPopup: this.checked });
+});
+
 document.getElementById('download-btn').addEventListener('click', function () {
     // to close self popup window
     window.close();
