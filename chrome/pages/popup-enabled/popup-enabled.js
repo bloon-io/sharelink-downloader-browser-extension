@@ -1,4 +1,6 @@
 main = function () {
+    load_all_i18n_content();
+
     const autoPopupCheckbox = document.getElementById('auto-popup-checkbox');
     chrome.storage.local.get(['isAutoPopup'], function (result) {
         if (result.isAutoPopup === undefined) {
@@ -15,6 +17,14 @@ main = function () {
 document.addEventListener('DOMContentLoaded', function () {
     main();
 });
+
+load_all_i18n_content = function () {
+    const elements = document.querySelectorAll('[i18n]');
+    elements.forEach(element => {
+        const key = element.getAttribute('i18n');
+        element.innerHTML = chrome.i18n.getMessage(key);
+    });
+}
 
 document.getElementById('auto-popup-checkbox').addEventListener('change', function () {
     chrome.storage.local.set({ isAutoPopup: this.checked });

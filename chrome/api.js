@@ -61,7 +61,7 @@ class SharelinkDataManager {
 
             } else {
                 // It will enter this block only if item itself of this sharelink is not a folder.
-                console.warn("This sharelink is not a folder.");
+                console.log("This sharelink is not a folder.");
             }
 
         } finally {

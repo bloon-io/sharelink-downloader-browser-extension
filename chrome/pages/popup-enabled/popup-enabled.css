@@ -4,7 +4,7 @@ a {
 
 html body {
   width: 320px;
-  height: 480px;
+  height: 500px;
   box-sizing: border-box;
   margin: 0;
   background-color: #F4F4F4;
@@ -42,7 +42,7 @@ html body .body-zone .inner-body {
   align-items: center;
 }
 html body .body-zone .inner-body .button-zone {
-  flex: 0 0 140px;
+  flex: 0 0 130px;
   width: 100%;
   background-color: #FFFFFF;
   display: flex;

@@ -1,17 +1,19 @@
 main = async function () {
+    load_all_i18n_content();
+
     const shareId = new URLSearchParams(window.location.search).get('shareId');
     const sharelink_url = "http://www.bloon.io/share/" + shareId;
 
-    document.title = "下載來自 " + sharelink_url + " 的檔案"; // TODO i18n
+    document.title = chrome.i18n.getMessage("dl__downloading") + " " + sharelink_url;
 
     const headTextInfo = document.querySelector('#head-text-info');
-    headTextInfo.textContent = "解析中，請稍候..."; // TODO i18n
+    headTextInfo.textContent = chrome.i18n.getMessage("dl__preparing");
 
     const sharelinkDataManager = new SharelinkDataManager(shareId);
     const treeData = await sharelinkDataManager.retrieveCurrentRemoteTreeData()
     console.log(treeData);
 
-    headTextInfo.textContent = "開始下載。下載過程中請保持此視窗開啟，關閉此視窗將中斷所有下載。"; // TODO i18n
+    headTextInfo.textContent = chrome.i18n.getMessage("dl__start_dwonload_and_warn_text");
     headTextInfo.style.color = 'red';
 
     const totalNumDiv = document.querySelector('#total-num');
@@ -30,6 +32,10 @@ main = async function () {
     download_next_file();
     download_next_file();
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    main();
+});
 
 chrome.runtime.onMessage.addListener((action_msg, sender, sendResponse) => {
     if (action_msg.action === "update_tr") {
@@ -58,6 +64,14 @@ window.addEventListener('beforeunload', function (event) {
     chrome.runtime.sendMessage(action_msg); // TODO Sometimes it fails in practice
 });
 
+load_all_i18n_content = function () {
+    const elements = document.querySelectorAll('[i18n]');
+    elements.forEach(element => {
+        const key = element.getAttribute('i18n');
+        element.innerHTML = chrome.i18n.getMessage(key);
+    });
+}
+
 increase_download_failed_num = function () {
     const downloadFailedNumDiv = document.querySelector('#download-failed-num');
     const download_failed_num = parseInt(downloadFailedNumDiv.textContent);
@@ -82,14 +96,14 @@ do_update_tr = function (params) {
         status_td.style.backgroundColor = 'rgba(0, 0, 255, 0.3)'; // light blue
 
     } else if (params.status === 'complete') {
-        status_td.textContent = "下載完成"; // TODO i18n
+        status_td.textContent = chrome.i18n.getMessage("dl__download_completed");
         status_td.style.backgroundColor = 'rgba(0, 255, 0, 0.3)'; // light green
         // ------------------------------
         increase_downloaded_num();
         download_next_file();
 
     } else if (params.status === 'interrupted') {
-        status_td.textContent = "下載中斷（" + params.cause + "）"; // TODO i18n
+        status_td.textContent = chrome.i18n.getMessage("dl__download_interrupted") + " (" + params.cause + ")";
         status_td.style.backgroundColor = 'rgba(255, 0, 0, 0.3)'; // light red
         // ------------------------------
         increase_download_failed_num();
@@ -145,7 +159,7 @@ init_show_table = function (treeData, shareId) {
 
         td = document.createElement('td');
         td.setAttribute('name', 'status');
-        td.textContent = "排隊中..."; // TODO i18n
+        td.textContent = chrome.i18n.getMessage("dl__in_queue");
         tr.appendChild(td);
 
         td = document.createElement('td');
@@ -159,6 +173,3 @@ init_show_table = function (treeData, shareId) {
         count++;
     }
 }
-
-// --------------------------------------------------
-main();

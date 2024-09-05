@@ -1,0 +1,47 @@
+{
+    "extension_name": {
+        "message": "BLOON sharelink downloader"
+    },
+    "extension_description": {
+        "message": "Allows you to download all files within a sharedlink folder directly from the webpage, while preserving the folder structure after downloading."
+    },
+    "pop__download_btn": {
+        "message": "DOWNLOAD ALL"
+    },
+    "pop__body_desc": {
+        "message": "This is the BLOON Sharelink Downloader. This page is a <a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>sharelink</a> page for a folder.<br /><br />Click the \"<b>DOWNLOAD ALL</b>\" button to download all the files within the folder, and the folder structure will be preserved after downloading."
+    },
+    "pop__body_desc_disabled": {
+        "message": "This is the BLOON Sharelink Downloader. This page is not the <a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>sharelink</a> page for a folder, so it will not be effective."
+    },
+    "pop__auto_popup_checkbox_label": {
+        "message": "Automatically show this popup when the page opens"
+    },
+    "dl__downloading": {
+        "message": "Downloading..."
+    },
+    "dl__preparing": {
+        "message": "Preparing, please wait..."
+    },
+    "dl__start_dwonload_and_warn_text": {
+        "message": "Downloading started. Please keep this window open during the download process; closing it will interrupt all downloads."
+    },
+    "dl__download_completed": {
+        "message": "Download completed"
+    },
+    "dl__download_interrupted": {
+        "message": "Download interrupted"
+    },
+    "dl__in_queue": {
+        "message": "In queue..."
+    },
+    "dl__total_num": {
+        "message": "Total number of files:"
+    },
+    "dl__completed_downloads_num": {
+        "message": "Completed downloads:"
+    },
+    "dl__failed_downloads_num": {
+        "message": "Failed downloads:"
+    }
+}

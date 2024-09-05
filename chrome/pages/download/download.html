@@ -2,31 +2,32 @@
 <html>
 
 <head>
-    <!-- TODO i18n -->
-    <title>下載</title>
+    <title>_</title>
     <meta charset="UTF-8">
-    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
     <link rel="icon" href="/images/sharelink-enable-for-extenstion-icon_128x128_51B749_bgTR.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="download.css">
 </head>
 
 <body>
-    <!-- TODO i18n -->
     <div class="head-info-zone">
         <div class="text-info" id="head-text-info"></div>
         <br />
-        <!-- TODO i18n -->
-        總檔案數：<div class="total-num" id="total-num">0</div><br />
-        已下載完成：<div class="downloaded-num" id="downloaded-num">0</div><br />
-        下載失敗：<div class="download-failed-num" id="download-failed-num">0</div><br />
+        <span i18n="dl__total_num"><!-- Total number of files: --></span>
+        <div class="total-num" id="total-num">0</div><br />
+
+        <span i18n="dl__completed_downloads_num"><!-- Completed downloads: --></span>
+        <div class="downloaded-num" id="downloaded-num">0</div><br />
+
+        <span i18n="dl__failed_downloads_num"><!-- Failed downloads: --></span>
+        <div class="download-failed-num" id="download-failed-num">0</div><br />
     </div>
     <br />
     <div class="file-list-zone" id="file-list-zone" style="display: none;">
         <table>
             <!-- <thead>
                 <tr>
-                    <th>狀態</th>
-                    <th>檔案</th>
+                    <th>Statu</th>
+                    <th>File</th>
                 </tr>
             </thead> -->
             <tbody id="file-list-tbody"></tbody>

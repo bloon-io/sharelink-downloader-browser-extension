@@ -16,15 +16,13 @@
     <div class="body-zone">
         <div class="inner-body">
             <div class="button-zone">
-                <button class="download-btn" id="download-btn">
-                    全部下載
+                <button class="download-btn" id="download-btn" i18n="pop__download_btn">
+                    <!-- Download all -->
                 </button>
             </div>
 
-            <div class="desc-zone">
-                這是 BLOON 分享連結下載器。這個頁面是資料夾的<a target="_blank" href="https://www.bloon.io/zh-tw/help/sharelinks">分享連結</a>頁面。<br />
-                <br />
-                點擊「<b>全部下載</b>」按鈕以下載資料夾內的所有檔案，並且會在下載後保持資料夾結構。
+            <div class="desc-zone" i18n="pop__body_desc">
+                <!-- This is BLOON sharelink downloader. This page is a <a target='_blank' href='https://www.bloon.io/en/help/sharelinks'>sharelink</a> page of a folder.<br /><br />Click the \"<b>Download all</b>\" button to download all files in the folder, and keep the folder structure after downloading. -->
             </div>
         </div>
     </div>
@@ -32,7 +30,9 @@
     <div class="footer-zone">
         <div class="auto-popup-option">
             <input type="checkbox" id="auto-popup-checkbox" checked>
-            <label for="auto-popup-checkbox">開啟頁面時自動顯示此彈跳窗</label>
+            <label for="auto-popup-checkbox" i18n="pop__auto_popup_checkbox_label">
+                <!-- Show this popup automatically when the page is opened -->
+            </label>
         </div>
     </div>
 
