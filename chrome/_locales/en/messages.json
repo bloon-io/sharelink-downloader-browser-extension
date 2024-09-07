@@ -3,7 +3,7 @@
         "message": "BLOON sharelink downloader"
     },
     "extension_description": {
-        "message": "Allows you to download all files within a sharedlink folder directly from the webpage, while preserving the folder structure after downloading."
+        "message": "Download all files within a sharelink folder directly from the webpage, preserving the folder structure."
     },
     "pop__download_btn": {
         "message": "DOWNLOAD ALL"
