@@ -1,6 +1,6 @@
 {
     "extension_name": {
-        "message": "BLOON sharelink downloader"
+        "message": "BLOON Sharelink Downloader"
     },
     "extension_description": {
         "message": "Download all files within a sharelink folder directly from the webpage, preserving the folder structure."

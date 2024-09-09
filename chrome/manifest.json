@@ -13,9 +13,9 @@
     "action": {
         "default_popup": "pages/popup-disabled/popup-disabled.html",
         "default_icon": {
-            "16": "images/sharelink-gray-for-extenstion-icon_16x16_878787_bgTR.png",
-            "48": "images/sharelink-gray-for-extenstion-icon_48x48_878787_bgTR.png",
-            "128": "images/sharelink-gray-for-extenstion-icon_128x128_878787_bgTR.png"
+            "16": "images/sharelink-gray-for-extension-icon_16x16_878787_bgTR.png",
+            "48": "images/sharelink-gray-for-extension-icon_48x48_878787_bgTR.png",
+            "128": "images/sharelink-gray-for-extension-icon_128x128_878787_bgTR.png"
         }
     },
     "background": {

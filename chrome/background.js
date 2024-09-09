@@ -46,9 +46,9 @@ _determine_correct_icon_and_popup = async function (params, tab, isFolder, share
             // to make icon appear as green
             chrome.action.setIcon({
                 path: {
-                    "16": "images/sharelink-enable-for-extenstion-icon_16x16_51B749_bgTR.png",
-                    "48": "images/sharelink-enable-for-extenstion-icon_48x48_51B749_bgTR.png",
-                    "128": "images/sharelink-enable-for-extenstion-icon_128x128_51B749_bgTR.png"
+                    "16": "images/sharelink-enable-for-extension-icon_16x16_51B749_bgTR.png",
+                    "48": "images/sharelink-enable-for-extension-icon_48x48_51B749_bgTR.png",
+                    "128": "images/sharelink-enable-for-extension-icon_128x128_51B749_bgTR.png"
                 },
                 tabId: tab.id
             });
@@ -70,9 +70,9 @@ _determine_correct_icon_and_popup = async function (params, tab, isFolder, share
         // to make icon appear as gray
         chrome.action.setIcon({
             path: {
-                "16": "images/sharelink-gray-for-extenstion-icon_16x16_878787_bgTR.png",
-                "48": "images/sharelink-gray-for-extenstion-icon_48x48_878787_bgTR.png",
-                "128": "images/sharelink-gray-for-extenstion-icon_128x128_878787_bgTR.png"
+                "16": "images/sharelink-gray-for-extension-icon_16x16_878787_bgTR.png",
+                "48": "images/sharelink-gray-for-extension-icon_48x48_878787_bgTR.png",
+                "128": "images/sharelink-gray-for-extension-icon_128x128_878787_bgTR.png"
             },
             tabId: tab.id
         });
