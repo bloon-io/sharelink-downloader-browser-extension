@@ -1,0 +1,47 @@
+{
+    "extension_name": {
+        "message": "BLOON 分享連結下載器"
+    },
+    "extension_description": {
+        "message": "讓您透過網頁就能下載分享連結資料夾內的所有檔案，並且會在下載後保持資料夾結構。"
+    },
+    "pop__download_btn": {
+        "message": "全部下載"
+    },
+    "pop__body_desc": {
+        "message": "這是 BLOON 分享連結下載器。這個頁面是資料夾的<a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>分享連結</a>頁面。<br /><br />點擊「全部下載」按鈕以下載資料夾內的所有檔案，並且會在下載後保持資料夾結構。"
+    },
+    "pop__body_desc_disabled": {
+        "message": "這是 BLOON 分享連結下載器。這個頁面不是資料夾的<a target='_blank' href='https://www.bloon.io/zh-tw/help/sharelinks'>分享連結</a>頁面，所以不會有作用。"
+    },
+    "pop__auto_popup_checkbox_label": {
+        "message": "開啟頁面時自動顯示此彈跳窗"
+    },
+    "dl__downloading": {
+        "message": "下載中..."
+    },
+    "dl__preparing": {
+        "message": "準備中，請稍候..."
+    },
+    "dl__start_dwonload_and_warn_text": {
+        "message": "開始下載。下載過程中請保持此視窗開啟，關閉此視窗將中斷所有下載。"
+    },
+    "dl__download_completed": {
+        "message": "下載完成"
+    },
+    "dl__download_interrupted": {
+        "message": "下載中斷"
+    },
+    "dl__in_queue": {
+        "message": "排隊中..."
+    },
+    "dl__total_num": {
+        "message": "總檔案數："
+    },
+    "dl__completed_downloads_num": {
+        "message": "已下載完成："
+    },
+    "dl__failed_downloads_num": {
+        "message": "下載失敗："
+    }
+}
